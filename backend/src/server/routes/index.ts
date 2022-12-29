@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { CidadesController } from './../controllers';
+import { CityController } from './../controllers';
 
 
 const router = Router();
@@ -10,11 +10,11 @@ router.get('/', (_, res) => {
   return res.send('Olá, DEV!');
 });
 
-router.get('/cidades', CidadesController.getAllValidation, CidadesController.getAll);
-router.post('/cidades', CidadesController.createValidation, CidadesController.create);
-router.get('/cidades/:id', CidadesController.getByIdValidation, CidadesController.getById);
-router.put('/cidades/:id', CidadesController.UpdateByIdValidation, CidadesController.updateById);
-router.delete('/cidades/:id', CidadesController.deleteByIdValidation, CidadesController.deleteById);
+router.get('/city', CityController.getAllValidation, CityController.getAll);
+router.post('/city', CityController.createValidation, CityController.create);
+router.get('/city/:id', CityController.getByIdValidation, CityController.getById);
+router.put('/city/:id', CityController.UpdateByIdValidation, CityController.updateById);
+router.delete('/city/:id', CityController.deleteByIdValidation, CityController.deleteById);
 
 
 
