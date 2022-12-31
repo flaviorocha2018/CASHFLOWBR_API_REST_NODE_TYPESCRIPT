@@ -36,7 +36,8 @@
       "@types/jest",
       "jest",
       "node",
-      ],                                   /* Specify type package names to be included without being referenced in a source file. */
+      ],        
+    "typeRoots": ["./types", "./node_modules/@types"],  /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "resolveJsonModule": true,                        /* Enable importing .json files. */
@@ -107,11 +108,13 @@
   "exclude": [
     "./jest.config.ts",
     "./node_modules",
-    "tests",
+    "**/*.spec.ts",
+    "**/*.test.ts",
     "./build",
   ],
   "include": [
-    "src/**/*",
+    "src/**/*.tsx",
+    "./src/**/*.ts",
     "**/*.spec.ts",
     "**/*.test.ts",
     "**/tests/**/*"

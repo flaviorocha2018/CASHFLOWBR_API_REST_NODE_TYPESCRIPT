@@ -3,18 +3,18 @@ import { StatusCodes } from 'http-status-codes';
 import { testServer } from '../jest.setup';
 
 
-describe('Cidades - UpdateById', () => {
+describe('City - UpdateById', () => {
 
   it('Update a  register', async () => {
 
     const result = await testServer
-      .post('/cidades')
+      .post('/city')
       .send({ name: 'Petrópolis', state: 'RJ' });
 
     expect(result.statusCode).toEqual(StatusCodes.CREATED);
 
     const resUpdated = await testServer
-      .put(`/cidades/${result.body}`)
+      .put(`/city/${result.body}`)
       .send({ nome: 'Caxias' });
 
     expect(resUpdated.statusCode).toEqual(StatusCodes.NO_CONTENT);
@@ -23,7 +23,7 @@ describe('Cidades - UpdateById', () => {
   it('Try to update a register that do not exist', async () => {
 
     const result = await testServer
-      .put('/cidades/99999')
+      .put('/city/99999')
       .send({ nome: 'Caxias' });
 
     expect(result.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);

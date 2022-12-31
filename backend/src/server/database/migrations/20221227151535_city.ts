@@ -1,4 +1,3 @@
-import { table } from 'console';
 import  { Knex } from 'knex';
 import { ETableNames } from '../ETableNames';
 
@@ -8,15 +7,15 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.city, table => {
       table.bigIncrements('id').primary().index();
-      table.string('name', 150).index().notNullable();
-      table.string('state', 2).index().notNullable();
-      table.comment('Table of "clients" city');
+      table.string('name', 150).checkLength('<=',150).index().notNullable();
+      table.string('state', 2).checkLength('=',2).index().notNullable();
+
+      table.comment('Table to insert "clients" city');
     })
     .then(() => {
       console.log(`# Created Table ${ETableNames.city}`);
     });
 }
-
 
 export async function down(knex: Knex) {
   return knex
