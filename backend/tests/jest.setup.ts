@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { Knex } from '../src/server/database/knex';
 import { server } from '../src/server/Server';
-import '@types/jest';
+
 
 
 import type {Config} from 'jest';
