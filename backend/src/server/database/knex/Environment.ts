@@ -2,11 +2,18 @@ import { Knex } from 'knex';
 import path from 'path';
 
 
+// https://stackoverflow.com/questions/49697082/node-postgres-connection-terminated-unexpectedly
 export const development: Knex.Config = {
-  client: 'sqlite3',
+  // client: 'sqlite3',
+  client: 'pg',
   useNullAsDefault: true,
   connection: {
-    filename: path.resolve(__dirname, '..', '..', '..', '..', 'database.sqlite')
+    // filename: path.resolve(__dirname, '..', '..', '..', '..', 'database.sqlite')
+    user: 'postgres',
+    password: '07021998',
+    database: 'NGCash',
+    host: 'localhost',
+    port: 5432,
   },
   migrations: {
     directory: path.resolve(__dirname, '..', 'migrations'),
@@ -16,7 +23,7 @@ export const development: Knex.Config = {
   },
   pool: {
     afterCreate: (connection: any, done: Function) => {
-      connection.run('PRAGMA foreign_keys = ON');
+      // connection.run('PRAGMA foreign_keys = ON');
       done();
     }
   }
