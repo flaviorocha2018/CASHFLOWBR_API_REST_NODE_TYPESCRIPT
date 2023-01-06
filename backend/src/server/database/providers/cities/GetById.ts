@@ -3,18 +3,18 @@ import { ICity } from '../../models';
 import { Knex } from '../../knex';
 
 
-export const getById = async (id: number): Promise< ICity | Error > => {
+export const getById = async (id: number): Promise<ICity | Error> => {
   try {
     const result = await Knex(ETableNames.cities)
       .select('*')
-      .where('id', '=', id )
+      .where('id', '=', id)
       .first();
 
     if (result) return result;
 
-    return new Error('Error! record not found');
+    return new Error('Register not found');
   } catch (error) {
     console.log(error);
-    return new Error('Error in finding a record');
+    return new Error('Error trying to find this register');
   }
 };

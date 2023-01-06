@@ -16,7 +16,7 @@ export async function up(knex: Knex) {
         .index()
         .notNullable()
         .references('id')
-        .inTable(ETableNames.city)
+        .inTable(ETableNames.cities)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
 

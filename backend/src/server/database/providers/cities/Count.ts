@@ -2,18 +2,17 @@ import { ETableNames } from '../../ETableNames';
 import { Knex } from '../../knex';
 
 
-export const count = async (filter = ''): Promise< number | Error > => {
+export const count = async (filter = ''): Promise<number | Error> => {
   try {
-    const [{count}] = await Knex(ETableNames.cities)
+    const [{ count }] = await Knex(ETableNames.cities)
       .where('name', 'like', `%${filter}%`)
-      .count<[{count: number}]>('* as count');
-      
+      .count<[{ count: number }]>('* as count');
 
     if (Number.isInteger(Number(count))) return Number(count);
 
-    return new Error('Error trying to get total quantity of records');
+    return new Error('Error consulting the total registers');
   } catch (error) {
     console.log(error);
-    return new Error('Error in counting the total records');
+    return new Error('Error consulting the total registers');
   }
 };

@@ -13,7 +13,7 @@ router.get('/', (_, res) => {
 router.get('/city', CityController.getAllValidation, CityController.getAll);
 router.post('/city', CityController.createValidation, CityController.create);
 router.get('/city/:id', CityController.getByIdValidation, CityController.getById);
-router.put('/city/:id', CityController.UpdateByIdValidation, CityController.updateById);
+router.put('/city/:id', CityController.updateByIdValidation, CityController.updateById);
 router.delete('/city/:id', CityController.deleteByIdValidation, CityController.deleteById);
 
 router.get('/clients', ClientsController.getAllValidation, ClientsController.getAll);
