@@ -5,7 +5,7 @@ import { Knex } from '../../knex';
 
 export const updateById = async (id: number, city: Omit< ICity, 'id' >): Promise< void | Error > => {
   try {
-    const result = await Knex(ETableNames.city)
+    const result = await Knex(ETableNames.cities)
       .update(city)
       .where('id', '=', id );
 

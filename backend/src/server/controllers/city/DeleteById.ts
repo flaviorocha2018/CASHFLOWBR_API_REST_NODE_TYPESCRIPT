@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import * as yup from 'yup';
 import { validation } from '../../shared/middleware';
 import { StatusCodes } from 'http-status-codes';
-import { CityProvider } from '../../database/providers/city'
+import { CityProvider } from '../../database/providers/cities'
 
 // limiting request by page.
 interface IParamProps {

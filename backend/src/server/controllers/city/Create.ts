@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import * as yup from 'yup';
-import { CityProvider } from '../../database/providers/city';
+import { CityProvider } from '../../database/providers/cities';
 import { validation } from '../../shared/middleware';
 import { StatusCodes } from 'http-status-codes';
 import { ICity } from '../../database/models';
@@ -19,7 +19,7 @@ export const createValidation = validation((getSchema) => ({
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
   const result = await CityProvider.create(req.body);
-  console.log(result);
+  console.log('controller create:',result);
   if (result instanceof Error){
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {

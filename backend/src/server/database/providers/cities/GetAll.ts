@@ -5,7 +5,7 @@ import { Knex } from '../../knex';
 
 export const getAll = async (page: number, limit: number, filter: string, id = 0): Promise< ICity[] | Error > => {
   try {
-    const result = await Knex(ETableNames.city)
+    const result = await Knex(ETableNames.cities)
       .select('*')
       .where('id', Number(id))
       .orWhere('name', 'like', `%${filter}%`)
@@ -13,8 +13,9 @@ export const getAll = async (page: number, limit: number, filter: string, id = 0
       .limit(limit);
 
     if (id > 0 && result.every(item => item.id !== id)) {
-      const resultById = await Knex(ETableNames.city)
+      const resultById = await Knex(ETableNames.cities)
         .select('*')
+        .orderBy('name', 'asc')
         .where('id', '=', id)
         .first();
 

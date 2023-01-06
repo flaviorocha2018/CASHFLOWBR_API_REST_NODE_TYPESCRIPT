@@ -1,2 +1,2 @@
-export * from './City';
+export * from './Cities';
 export * from './Client';

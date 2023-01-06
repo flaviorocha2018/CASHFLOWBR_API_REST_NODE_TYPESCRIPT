@@ -6,7 +6,7 @@ import path from 'path';
 export const development: Knex.Config = {
   // client: 'sqlite3',
   client: 'pg',
-  useNullAsDefault: true,
+  
   connection: {
     // filename: path.resolve(__dirname, '..', '..', '..', '..', 'database.sqlite')
     user: 'postgres',
@@ -15,6 +15,7 @@ export const development: Knex.Config = {
     host: 'localhost',
     port: 5432,
   },
+  useNullAsDefault: true,
   migrations: {
     directory: path.resolve(__dirname, '..', 'migrations'),
   },
