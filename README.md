@@ -1,6 +1,6 @@
 # NG_CASH_KNEX_API_REST_NODE_TYPESCRIPT
 
-# Boas-vindas a este repositório de uma API_REST_NODE_TYPESCRIPT
+# repositório de uma API_REST_NODE_TYPESCRIPT
 
 Para realizar o projeto, estou utilizando Typescript, NodeJs, Postgresql e Knex (ORM) para a realização do Backend.
 No Frontend será utilizado Reactjs e Material-ui para estilização e atender a responsividade. Uma vez que o Material-ui possui seu design e
@@ -28,7 +28,6 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
   
 </details>
 
-
 # Orientações
 
   - Os comandos que você utilizará com mais frequência são:
@@ -37,9 +36,8 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
     3. npm run knex:rollback para fazer o drop das tabelas no banco;
     4. npm run knex:seed para rodar o seed das cidades do estado;
   
-
 <details>
-  <summary><strong>🤝 Depois de terminar o desenvolvimento Frontend e Backend o projeto estará online (opcional)</strong></summary><br />
+  <summary><strong>🤝 Depois de terminar o desenvolvimento Frontend e Backend o projeto estará online</strong></summary><br />
 
   O link do projeto estará disponível aqui:
 
