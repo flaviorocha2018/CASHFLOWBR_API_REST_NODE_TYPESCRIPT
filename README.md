@@ -1,6 +1,6 @@
 # NG_CASH_KNEX_API_REST_NODE_TYPESCRIPT
 
-# repositório de uma API_REST_NODE_TYPESCRIPT
+# Repositório de uma API_REST_NODE_TYPESCRIPT
 
 Para realizar o projeto, estou utilizando Typescript, NodeJs, Postgresql e Knex (ORM) para a realização do Backend.
 No Frontend será utilizado Reactjs e Material-ui para estilização e atender a responsividade. Uma vez que o Material-ui possui seu design e
@@ -25,9 +25,7 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
   <summary><strong>🗓 Data de Entrega - em desnvolvimento </strong></summary><br />
   
   * Este projeto é individual;
-  
-</details>
-
+ 
 # Orientações
 
   - Os comandos que você utilizará com mais frequência são:
