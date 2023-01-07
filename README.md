@@ -22,7 +22,7 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
   Frontend: React e Typescript, utilizando Material-ui para estilização. Em andamento.
 
   
-  <summary><strong>🗓 Data de Entrega - em desnvolvimento </strong></summary><br />
+  <summary><strong>🗓 Data de Entrega - em desenvolvimento </strong></summary><br />
   
   * Este projeto é individual;
  
