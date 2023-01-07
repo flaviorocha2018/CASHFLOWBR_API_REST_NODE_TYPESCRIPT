@@ -1,7 +1,10 @@
+/backend/build
+
+
 /node_modules
 
 .env
-/build
+
 /coverage
 
 *.sqlite
