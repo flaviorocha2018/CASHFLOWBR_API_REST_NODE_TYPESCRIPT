@@ -12,13 +12,14 @@ export async function up(knex: Knex) {
       table.string('password').unique().notNullable().checkRegex('/(?=.*[A-Z])(?=.*[0-9]).*$/').checkLength('>=', 8);
   
       table
-        .bigInteger('accountId')
+        .integer('accountId')
+        .unique()
         .index()
-        .notNullable()
         .references('id')
-        .inTable(ETableNames.account)
+        .inTable(ETableNames.accounts)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
+      // user accountId is a FK for accounts
 
       table.comment('Table to insert "users"  in table user ');
     })

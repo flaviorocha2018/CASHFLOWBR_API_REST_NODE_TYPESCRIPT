@@ -6,6 +6,8 @@
         "estado",
         "knexfile",
         "Petrópolis",
-        "postgrespw"
+        "postgrespw",
+        "signin",
+        "teste"
     ]
 }
