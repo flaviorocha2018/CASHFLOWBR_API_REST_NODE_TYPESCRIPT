@@ -7,7 +7,7 @@ No Frontend será utilizado Reactjs e Material-ui para estilização e atender a
 desenvolvimento pela Google, o que indica ser uma boa opçao para UI/UX e Android platform.
 
 # Objetivo
-Ao criar um novo usuário, automáticamente  deve-se criar uma conta com balance de R$100,00 deste usuário; 
+Ao criar um novo usuário, automaticamente  deve-se criar uma conta com balance de R$100,00 deste usuário; 
 Cada usuário deve possuir um nome único;
 Password seja composta de 8 caracteres, um número e uma letra maiúscula - deve ser hasheada ao salvar no banco;
 Todo usuário deve ser possível logar na aplicação utilizando username e password, e quando validado gere um token JWT de 24 horas;
@@ -18,7 +18,7 @@ Ao usuário será permitido visualizar todas as transações que participou "Cas
 O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-out" e data da realização.
 
 
-  <strong>🚵 Habilidades a serem trabalhadas:</strong>
+  <strong>🚵 Requisitos a serem finalizados:</strong>
   Frontend: React e Typescript, utilizando Material-ui para estilização. Em andamento.
 
   
@@ -29,6 +29,7 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
 # Orientações
 
   - Os comandos que você utilizará com mais frequência são:
+    Após clonar o projeto, faça um npm install para instalar as dependências
     1. npm start no terminal para rodar o servidor do backend;
     2. npm run knex:migrate para criar as tabelas no banco Postgresql;
     3. npm run knex:rollback para fazer o drop das tabelas no banco;
@@ -37,7 +38,7 @@ O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-o
 <details>
   <summary><strong>🤝 Depois de terminar o desenvolvimento Frontend e Backend o projeto estará online</strong></summary><br />
 
-  O link do projeto estará disponível aqui:
+  O link do projeto publicado na Digital Ocean estará disponível aqui abaixo após finalizado.
 
 </details>
 

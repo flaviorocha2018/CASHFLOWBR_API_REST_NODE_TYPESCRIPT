@@ -13,8 +13,8 @@ export const create = async (client: Omit<IClient, 'id'>): Promise<number | Erro
       return new Error('The city used this register was not found!');
     }
 
-
     const [result] = await Knex(ETableNames.client).insert(client).returning('id');
+
     if (typeof result === 'object') {
       return result.id;
     } else if (typeof result === 'number') {

@@ -23,7 +23,7 @@ export async function alterTable(knex: Knex) {
     .schema
     .alterTable(ETableNames.accounts, table => {
       table.integer('accountId').unsigned().unique();
-      table.foreign('accountId').references('id').inTable('accounts').onUpdate('CASCADE').onDelete('RESTRICT')
+      table.foreign('accountId').references('id').inTable('accounts').onUpdate('CASCADE').onDelete('RESTRICT');
     });
 }
 

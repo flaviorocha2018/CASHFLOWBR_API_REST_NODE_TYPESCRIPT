@@ -4,7 +4,8 @@ import * as yup from 'yup';
 
 import { UsersProvider } from '../../database/providers/users';
 import { validation } from '../../shared/middleware';
-import { IUser } from '../../database/models';
+import { IAccount, IUser } from '../../database/models';
+import {hash, compare } from 'bcrypt';
 
 
 interface IBodyProps extends Omit<IUser, 'id' | 'accountId' > { }
@@ -12,13 +13,15 @@ interface IBodyProps extends Omit<IUser, 'id' | 'accountId' > { }
 export const signUpValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
     userName: yup.string().required().min(3).max(100),
-    email: yup.string().required().min(3).max(100),
+    email: yup.string().email().required().min(3).max(100),
     password: yup.string().required().min(8).matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/, {message: 'Password must contain at least one capital letter and one number'}),
     
   })),
+ 
 }));
 
 export const signUp = async (req: Request<{}, {}, IUser>, res: Response) => {
+  // create user
   const result = await UsersProvider.create(req.body);
 
   if (result instanceof Error) {
@@ -28,6 +31,11 @@ export const signUp = async (req: Request<{}, {}, IUser>, res: Response) => {
       }
     });
   }
+  // autenticate user
+  
+
+  // validate user
+
 
   return res.status(StatusCodes.CREATED).json(result);
 };

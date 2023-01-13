@@ -9,7 +9,7 @@ export async function up(knex: Knex) {
       table.bigIncrements('id').primary().index();
       table.string('userName').unique().index().notNullable().checkLength('>=', 3);
       table.string('email').unique().index().notNullable(),
-      table.string('password').unique().notNullable().checkRegex('/(?=.*[A-Z])(?=.*[0-9]).*$/').checkLength('>=', 8);
+      table.string('password').unique().notNullable().checkLength('>=', 8);
   
       table
         .integer('accountId')

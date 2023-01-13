@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { CityController, ClientsController, UsersController } from './../controllers';
+import { AccountsController, CityController, ClientsController, UsersController } from './../controllers';
 
 
 const router = Router();
@@ -24,5 +24,11 @@ router.delete('/clients/:id', ClientsController.deleteByIdValidation, ClientsCon
 
 router.post('/signin', UsersController.signInValidation, UsersController.signIn);
 router.post('/signup', UsersController.signUpValidation, UsersController.signUp);
+
+
+router.get('/account', AccountsController.getAllValidation, AccountsController.getAll);
+router.get('/account/:id', AccountsController.getByIdValidation, AccountsController.getBalanceById);
+
+// router.put('/account/:id', ClientsController.updateByIdValidation, ClientsController.updateById);
 
 export { router };
