@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { UsersProvider } from '../../database/providers/users';
 import { validation } from '../../shared/middleware';
 import { IUser } from '../../database/models';
+import { authenticateUser }  from '../../database/providers/users/Authenticate';
 
 
 interface IBodyProps extends Omit<IUser, 'id' | 'email' | 'accountId'> { }
@@ -21,8 +22,7 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
   
   const {userName, password} = req.body;
   
-  
-  const result = await UsersProvider.getByUserName(userName);
+  const result = await UsersProvider.authenticateUser(userName, password);
 
   if (result instanceof Error) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -32,16 +32,15 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
     });
   }
 
-  if (password !== result.password) {
+  if (! password ) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       errors: {
         default: 'invalid userName or password'
       }
     });
   } else {
-    return res.status(StatusCodes.OK).json({ accessToken: 'teste.teste.teste'});
+    return res.status(StatusCodes.OK).json(result);
   }
-
 
   // return res.status(StatusCodes.CREATED).json(result);
 };

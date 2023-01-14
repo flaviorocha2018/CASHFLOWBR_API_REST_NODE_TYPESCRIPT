@@ -1,12 +1,16 @@
 import * as getByEmail from './GetByEmail';
-import * as GetByUserName from './GetByUserName';
+import * as getByUserName from './GetByUserName';
 import * as create from './Create';
+import * as authenticateUser from './Authenticate';
+import * as ValidateUser from './ValidateUser';
 
 
 
 export const UsersProvider = {
   ...getByEmail,
-  ...GetByUserName,
+  ...getByUserName,
   ...create,
+  ...authenticateUser,
+  ...ValidateUser,
 
 };

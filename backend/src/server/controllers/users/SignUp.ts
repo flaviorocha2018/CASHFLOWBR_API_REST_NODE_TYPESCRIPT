@@ -31,11 +31,6 @@ export const signUp = async (req: Request<{}, {}, IUser>, res: Response) => {
       }
     });
   }
-  // autenticate user
-  
-
-  // validate user
-
-
+ 
   return res.status(StatusCodes.CREATED).json(result);
 };
