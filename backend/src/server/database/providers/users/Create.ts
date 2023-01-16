@@ -3,6 +3,7 @@ import { IUser } from '../../models';
 import { Knex } from '../../knex';
 import  bcrypt from 'bcrypt';
 import { createToken } from '../../../shared/middleware/auth';
+import { PasswordCrypto } from '../../../shared/services';
 
 
 export const create = async (user: Omit<IUser, 'id'>): Promise<number | Error | Object> => {
@@ -12,19 +13,21 @@ export const create = async (user: Omit<IUser, 'id'>): Promise<number | Error | 
    
     if (userExist.length > 0)  return new Error('This name has already been used!');
 
-    // making password hash 
-    const password = user.password;
-    const hash = await bcrypt.hash(password, 10);
-    user.password = hash;
+    // making password hash to save in DB
+    const hashPassword = await PasswordCrypto.hashPassword(user.password);
+    // another way of hashing password
+    // const password = user.password;
+    // const hashPassword = await bcrypt.hash(password, 10);
+    // user.password = hashPassword;
    
     
-    // Create an account and get accountId
+    // Create an account and get accountId - default balance of 100.
     const accountId  = await Knex(ETableNames.accounts).insert({}).returning('id');
     user.accountId = accountId[0].id;
   
 
-    // Create an user with an accountId and default value of 100.
-    const [result] = await Knex(ETableNames.user).insert(user).returning('id');
+    // Create an user with an accountId and default balance with value of 100.
+    const [result] = await Knex(ETableNames.user).insert({...user, password: hashPassword}).returning('id');
     
     // Create a token
     const token = createToken({id: result.id,  username: user.userName});

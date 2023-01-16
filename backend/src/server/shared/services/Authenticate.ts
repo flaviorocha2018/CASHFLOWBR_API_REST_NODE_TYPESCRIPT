@@ -1,8 +1,8 @@
-import { ETableNames } from '../../ETableNames';
-import { IUser } from '../../models';
-import { Knex } from '../../knex';
-import bcrypt, { hash } from 'bcrypt';
-import { createToken } from '../../../shared/middleware/auth';
+import { ETableNames } from '../../database/ETableNames';
+import { IUser } from '../../database/models';
+import { Knex } from '../../database/knex';
+import bcrypt  from 'bcrypt';
+import { createToken } from '../../shared/middleware/auth';
 
 
 export const authenticateUser = async (userName: string, password: string): Promise<IUser | Error | Object> => {

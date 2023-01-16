@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { UsersProvider } from '../../database/providers/users';
 import { validation } from '../../shared/middleware';
 import { IUser } from '../../database/models';
-import { authenticateUser }  from '../../database/providers/users/Authenticate';
+import { authenticateUser }  from '../../shared/services/Authenticate';
 
 
 interface IBodyProps extends Omit<IUser, 'id' | 'email' | 'accountId'> { }
@@ -22,7 +22,8 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
   
   const {userName, password} = req.body;
   
-  const result = await UsersProvider.authenticateUser(userName, password);
+  // Making comparison of password and hashedPassword from DB
+  const result = await authenticateUser(userName, password);
 
   if (result instanceof Error) {
     return res.status(StatusCodes.UNAUTHORIZED).json({

@@ -1,8 +1,8 @@
 import * as getByEmail from './GetByEmail';
 import * as getByUserName from './GetByUserName';
 import * as create from './Create';
-import * as authenticateUser from './Authenticate';
-import * as ValidateUser from './ValidateUser';
+import * as authenticateUser from '../../../shared/services';
+import * as ValidateUser from '../../../shared/services';
 
 
 
