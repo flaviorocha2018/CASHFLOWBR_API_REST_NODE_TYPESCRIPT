@@ -3,14 +3,14 @@ import { IAccount } from '../../models';
 import { Knex } from '../../knex';
 
 
-export const getById = async (id: number): Promise<IAccount | Error> => {
+export const getById = async (id: number): Promise<IAccount | Error | number| any> => {
   try {
     const result = await Knex(ETableNames.accounts)
       .select('*')
       .where('id', '=', id)
       .first();
 
-    if (result) return result;
+    if (result.id) return result;
 
     return new Error('Register not found');
   } catch (error) {

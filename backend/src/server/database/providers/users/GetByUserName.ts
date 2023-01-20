@@ -10,7 +10,7 @@ export const getByUserName = async (userName: string): Promise<IUser | Error> =>
       .where('userName', '=', userName)
       .first();
 
-    if (result) return result;
+    if (result?.userName) return result;
 
     return new Error('Register not found');
   } catch (error) {

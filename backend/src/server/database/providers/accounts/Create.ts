@@ -4,7 +4,7 @@ import { Knex } from '../../knex';
 
 
 
-export const create = async (account: Omit<IAccount, 'id'>): Promise<number | Error> => {
+export const create = async (account: Omit<IAccount, 'id'>): Promise<number | Error | undefined> => {
   try {
     const [result] = await Knex(ETableNames.accounts).insert(account).returning('id');
 

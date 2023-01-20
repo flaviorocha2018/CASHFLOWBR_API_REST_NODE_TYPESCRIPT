@@ -6,7 +6,7 @@ declare module 'knex/types/tables' {
      city: ICity
      client: IClient
      user: IUser
-    //  account: IAccount
-    //  transaction: ITransaction
+     account: IAccount
+     transaction: ITransaction
   }
 }

@@ -3,11 +3,11 @@ import { ETableNames  } from '../ETableNames';
 
 
 export const seed = async (knex: Knex) => {
-  const [{ count }] = await knex(ETableNames.city).count<[{count: Number}]>('* as count');
+  const [{ count }] = await knex(ETableNames.cities).count<[{count: Number}]>('* as count');
   if (!Number.isInteger(count) || Number(count) > 0) return;
 
   const citiesRioDeJaneiro = [
-    'Angra dos Reis',
+    'Angra dos Reis', 
     'Aperibé',
     'Araruama',
     'Areal',
@@ -104,9 +104,6 @@ export const seed = async (knex: Knex) => {
   // https://gist.github.com/letanure/3012978
 
   const citiesToInsert = citiesRioDeJaneiro.map(citiName => ({name: citiName, state: 'RJ'}));
-  await knex(ETableNames.city).insert(citiesToInsert);
-
-
-  
+  await knex(ETableNames.cities).insert(citiesToInsert);
 
 };
