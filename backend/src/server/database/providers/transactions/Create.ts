@@ -10,10 +10,11 @@ import { validation } from '../../../shared/middleware';
 interface ITransferRequest {
 username: string;
 value: number;
+
 }
 
 
-interface IBodyProps extends Omit<ITransferRequest, 'id'> { }
+interface IBodyProps extends Omit<ITransferRequest, 'id' > { }
 
 export const transferValidation = validation(get => ({
   body: get<IBodyProps>(yup.object().shape({
@@ -22,7 +23,7 @@ export const transferValidation = validation(get => ({
   })),
 }));
 
-// username is the user that will receive deposit
+// username is the user that will receive deposit - userCashOut will be debited
 export const verifyUserAndAccountBalance = async ( {username, value}: ITransferRequest, usernameCashOut: string): Promise<string | any > => {
   try {
   //userCashOut below receive 2nd parameter "usernameCashOut which will be debited"
@@ -62,6 +63,7 @@ export const verifyUserAndAccountBalance = async ( {username, value}: ITransferR
 };
 
 export const VerifyingUserExistAndMakeCashIn = async ( userCashIn: string, value: number): Promise<string | any | number > => {
+  //creditedAccountID
   const userID = await Knex(ETableNames.user).select('*').from(ETableNames.user)
     .where('userName', '=', userCashIn )
     .first();
@@ -79,40 +81,19 @@ export const VerifyingUserExistAndMakeCashIn = async ( userCashIn: string, value
   return userAccount.id;
 
 };
-
-export const createTransaction = async (transaction: Omit<ITransactions, 'id'>): Promise< number | Error | any > => {
+// Resolver bugs
+export const createTransaction = async (request: ITransferRequest, usernameCashOut: string) => {
  
-  try {
-    const [newTransaction] = await Knex(ETableNames.transactions).insert(transaction).returning('id');
-    if (typeof newTransaction === 'object') {
-      return newTransaction.id;
-    } else if (typeof newTransaction === 'number') {
-      return newTransaction;
-    }
+  const {userName, value} = await transferValidation(req.body);
 
-    return new Error('Error to create this register');
+  const debitedAccountId = await verifyUserAndAccountBalance({username, value}, usernameCashOut);
+
+  const creditedAccountId = await VerifyingUserExistAndMakeCashIn(userCashIn, value);
+  // dúvida no insert tbm
+  const transaction = await Knex(ETableNames.transactions).insert(debitedAccountId, creditedAccountId, value).returning('id');
   
-  } catch (error) {
-    console.log(error);
-    return new Error('Error trying to insert this transaction');
-  }
-
+  return transaction;
 };
 
-// erros nesta função.
 
-// export const create = async (request: ITransferRequest, usernameCashOut: string) => {
-  
-//   const { username, value } = transferValidation(req.body, {}, {});
 
-//   const debitedAccountId = await verifyUserAndAccountBalance({username, value}, usernameCashOut);
-
-//   const creditedAccountId = await VerifyingUserExistAndMakeCashIn(username, value); 
-
-//   const transaction = await createTransaction(debitedAccountId, creditedAccountId, value);
-
-// };
-
-// getAll
-// getTransactionByDebitDate
-// getTransactionByCreditDate
