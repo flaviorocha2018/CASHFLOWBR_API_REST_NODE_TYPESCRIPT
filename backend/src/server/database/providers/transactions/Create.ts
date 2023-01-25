@@ -1,5 +1,5 @@
 import { ETableNames } from '../../ETableNames';
-import { ITransactions } from '../../models';
+import { ITransactions, IUser } from '../../models';
 import { Knex } from '../../knex';
 import * as yup from 'yup';
 import * as userModel from '../../providers/users';
@@ -27,22 +27,22 @@ export const transferValidation = validation(get => ({
 export const verifyUserAndAccountBalance = async ( {username, value}: ITransferRequest, usernameCashOut: string): Promise<string | any > => {
   try {
   //userCashOut below receive 2nd parameter "usernameCashOut which will be debited"
-    const userCashOut = await userModel.UsersProvider.getByUserName(usernameCashOut);
+    const userCashOut = await userModel.UsersProvider.getByUserName(usernameCashOut) as IUser;
 
-    if(username === usernameCashOut){
+    if(username === userCashOut.userName){
       throw new Error ('Is not permitted to transfer a value to yourself!');  
     } 
     
     // here I get the user accountId from usernameCashOut
     const cashOutAccountId = await Knex(ETableNames.user).select('accountId').from(ETableNames.user)
-      .where('userName', '=', userCashOut)
+      .where('userName', '=', userCashOut.userName)
       .first();
     
     if (!cashOutAccountId) return Error ('User accountId not found!');
 
     // here I get the id from table accounts where = accountId
     const accountCashOut = await Knex(ETableNames.accounts).select('*').from(ETableNames.accounts)
-      .where('id', '=', 'cashOutAccountId')
+      .where('id', '=', cashOutAccountId )
       .first();
     // here I verify account balance to perform the operation
     if (accountCashOut.balance < value || value === 0) {
@@ -50,8 +50,8 @@ export const verifyUserAndAccountBalance = async ( {username, value}: ITransferR
     }
 
     const newBalance = Number(accountCashOut.balance) - value;
-
-    await accountModel.AccountsProvider.updateById(accountCashOut.id, newBalance as any);
+    // corrigir balance by atualizar balance
+    await accountModel.AccountsProvider.updateBalanceById(accountCashOut.id, newBalance as any);
 
     return accountCashOut.id;
    
@@ -75,22 +75,27 @@ export const VerifyingUserExistAndMakeCashIn = async ( userCashIn: string, value
   const userAccount = await accountModel.AccountsProvider.getById(accountCashIn);
 
   const newBalance = Number(userAccount.balance) + value;
-
-  await accountModel.AccountsProvider.updateById(userAccount, newBalance as any);
+  // corrigir update com balance.
+  await accountModel.AccountsProvider.updateBalanceById(userAccount, newBalance as any );
 
   return userAccount.id;
 
 };
 // Resolver bugs
-export const createTransaction = async (request: ITransferRequest, usernameCashOut: string) => {
+export const createTransaction = async ({username, value}: ITransferRequest, usernameCashOut: string) => {
  
-  const {userName, value} = await transferValidation(req.body);
-
   const debitedAccountId = await verifyUserAndAccountBalance({username, value}, usernameCashOut);
-
-  const creditedAccountId = await VerifyingUserExistAndMakeCashIn(userCashIn, value);
+  console.log('conta débito: ', debitedAccountId);
+  const creditedAccountId = await VerifyingUserExistAndMakeCashIn(username, value);
+  console.log('conta crédito: ', creditedAccountId);
+  console.log('valor: ', value);
   // dúvida no insert tbm
-  const transaction = await Knex(ETableNames.transactions).insert(debitedAccountId, creditedAccountId, value).returning('id');
+  const transaction = await Knex(ETableNames.transactions).insert({
+    debitedAccountId: debitedAccountId,
+    creditedAccountId: creditedAccountId,
+    value: value,
+  }).into(ETableNames.transactions).returning('id');
+
   
   return transaction;
 };

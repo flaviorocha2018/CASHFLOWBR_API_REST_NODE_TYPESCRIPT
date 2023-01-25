@@ -16,12 +16,15 @@ export const createValidation = validation(get => ({
   }))
 }));
 
+
 export const create = async (req: Request, res: Response ): Promise<Response> => {
-  const { username: usernameCashOut } = req.user;
+  const { username: usernameCashOut } = req.headers;
   const { username, value } = req.body;
   
+  console.log('username: ', usernameCashOut );
+  console.log('username: ', username, 'valor: ', value);
   const transaction = await 
-  TransactionsProvider.createTransaction({username, value}, usernameCashOut);
+  TransactionsProvider.createTransaction({username, value}, usernameCashOut as string );
 
   if (transaction instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

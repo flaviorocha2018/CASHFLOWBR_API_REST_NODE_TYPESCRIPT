@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { AccountsController, CityController, ClientsController, UsersController } from './../controllers';
 import { ensureAuthenticated } from '../shared/middleware';
+import { TransactionsController } from '../controllers/transactions';
 
 
 const router = Router();
@@ -29,8 +30,8 @@ router.post('/signin',  UsersController.signInValidation, UsersController.signIn
 router.post('/signup',  UsersController.signUpValidation, UsersController.signUp);
 router.get('/user/:id',  UsersController.getAccountByIdValidation, UsersController.getUserAccountId);
 
+router.post('/transaction', TransactionsController.createValidation, TransactionsController.create);
 
 
-// router.put('/account/:id', ClientsController.updateByIdValidation, ClientsController.updateById);
 
 export { router };
