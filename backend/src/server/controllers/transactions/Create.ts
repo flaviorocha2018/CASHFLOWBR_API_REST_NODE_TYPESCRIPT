@@ -1,7 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
 import * as yup from 'yup';
-
 import { TransactionsProvider } from './../../database/providers/transactions';
 import { validation } from '../../shared/middleware';
 import { ITransactions } from './../../database/models';
@@ -15,7 +14,6 @@ export const createValidation = validation(get => ({
     value: yup.number().required(),
   }))
 }));
-
 
 export const create = async (req: Request, res: Response ): Promise<Response> => {
   const { username: usernameCashOut } = req.headers;

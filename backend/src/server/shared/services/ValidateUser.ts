@@ -1,6 +1,6 @@
-import { ETableNames } from '../../ETableNames';
-import { IUser } from '../../models';
-import { Knex } from '../../knex';
+import { ETableNames } from '../../database/ETableNames';
+import { IUser } from '../../database/models';
+import { Knex } from '../../database/knex';
 
 
 export const validateUser = async (id: number): Promise<IUser | Error> => {

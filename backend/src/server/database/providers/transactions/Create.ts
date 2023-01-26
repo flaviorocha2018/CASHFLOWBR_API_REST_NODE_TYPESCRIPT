@@ -59,7 +59,6 @@ export const verifyUserAndAccountBalance = async ( {username, value}: ITransferR
     console.log(error);
     return new Error('Error trying to insert a new transfer');
   }
-
 };
 
 export const VerifyingUserExistAndMakeCashIn = async ( userCashIn: string, value: number): Promise<string | any | number > => {
@@ -96,7 +95,6 @@ export const createTransaction = async ({username, value}: ITransferRequest, use
     value: value,
   }).into(ETableNames.transactions).returning('id');
 
-  
   return transaction;
 };
 

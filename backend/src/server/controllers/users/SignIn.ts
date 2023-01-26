@@ -6,6 +6,8 @@ import { UsersProvider } from '../../database/providers/users';
 import { validation } from '../../shared/middleware';
 import { IUser } from '../../database/models';
 import { authenticateUser }  from '../../shared/services/Authenticate';
+import { JWTService } from '../../shared/services';
+import { createToken } from '../../shared/middleware/auth';
 
 
 interface IBodyProps extends Omit<IUser, 'id' | 'email' | 'accountId'> { }
@@ -21,7 +23,7 @@ export const signInValidation = validation((getSchema) => ({
 export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
   
   const {userName, password} = req.body;
-  
+  const userId = await UsersProvider.getIdByUserName(req.body.userName);
   // Making comparison of password and hashedPassword from DB
   const result = await authenticateUser(userName, password);
 
@@ -40,7 +42,19 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
       }
     });
   } else {
-    return res.status(StatusCodes.OK).json({accessToken: 'teste.teste.teste'});
+
+    // const token = createToken(userId);
+    const accessToken = JWTService.signIn({uid: userId});
+    if (accessToken === 'JWT_SECRET_NOT_FOUND'){
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        errors: {
+          default: 'Error in generate access token!'
+        }
+      });
+    }
+   
+
+    return res.status(StatusCodes.OK).json({accessToken});
   }
 
   // return res.status(StatusCodes.CREATED).json(result);
