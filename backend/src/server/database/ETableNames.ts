@@ -4,5 +4,9 @@ export enum ETableNames {
   user = 'user',
   accounts = 'accounts',
   transactions = 'transactions',
+  billings = 'billings',
+  cnae = 'cnae',
+  salesman = 'salesman',
+  status = 'status',
 
 }

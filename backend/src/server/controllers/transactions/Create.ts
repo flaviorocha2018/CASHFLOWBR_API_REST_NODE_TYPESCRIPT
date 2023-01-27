@@ -15,22 +15,25 @@ export const createValidation = validation(get => ({
   }))
 }));
 
-export const create = async (req: Request, res: Response ): Promise<Response> => {
+export const create = async (req: Request<{}, {}, ITransactions>, res: Response) => {
   const { username: usernameCashOut } = req.headers;
-  const { username, value } = req.body;
+  const { creditedAccountId, value } = req.body;
+  // const result = await TransactionsProvider.createTransaction(req.body, usernameCashOut);
+  
+ 
   
   console.log('username: ', usernameCashOut );
-  console.log('username: ', username, 'valor: ', value);
-  const transaction = await 
-  TransactionsProvider.createTransaction({username, value}, usernameCashOut as string );
+  // console.log('username: ', username, 'valor: ', value);
+  // const transaction = await 
+  // TransactionsProvider.createTransaction({username, value}, usernameCashOut as string );
 
-  if (transaction instanceof Error) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: transaction.message
-      }
-    });
-  }
+  // if (transaction instanceof Error) {
+  //   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+  //     errors: {
+  //       default: transaction.message
+  //     }
+  //   });
+  // }
 
-  return res.status(StatusCodes.CREATED).json(transaction);
+  // return res.status(StatusCodes.CREATED).json(transaction);
 };

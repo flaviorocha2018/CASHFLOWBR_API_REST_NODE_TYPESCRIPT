@@ -4,3 +4,7 @@ export * from './Client';
 export * from './LoginUsers';
 export * from './Transactions';
 export * from './Users';
+export * from './Billing';
+export * from './Cnae';
+export * from './Salesman';
+export * from './Status';
