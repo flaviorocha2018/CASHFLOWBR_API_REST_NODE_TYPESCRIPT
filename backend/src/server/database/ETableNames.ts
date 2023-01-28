@@ -7,6 +7,7 @@ export enum ETableNames {
   billings = 'billings',
   cnae = 'cnae',
   salesman = 'salesman',
+  contracts = 'contracts',
   status = 'status',
 
 }

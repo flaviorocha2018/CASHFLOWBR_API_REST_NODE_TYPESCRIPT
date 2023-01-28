@@ -3,7 +3,7 @@ export interface ISalesMan {
   firstName: string;
   middleName: string;
   lastName: string;
-  idNumber: number;
+  identificationNumber: number;
   dateIssued: Date;
   stateDepartment: string;
   dateOfBirth: Date;
@@ -13,6 +13,6 @@ export interface ISalesMan {
   neighborhood: string;
   complement: string;
   cityId: number;
-  cellularPhone: number;
+  cellular: number;
 
 }

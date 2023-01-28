@@ -7,10 +7,10 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.client, table => {
       table.bigIncrements('id').primary().index();
-      table.string('name').index().notNullable();
-      table.string('lastName').index().notNullable();
-      table.string('email').unique().notNullable();
-
+      table.string('corporateName').index().notNullable();
+      table.string('address').index().notNullable();
+      table.string('complement').notNullable();
+      table.string('neighborhood').notNullable();
       table
         .bigInteger('cityId')
         .index()
@@ -19,6 +19,20 @@ export async function up(knex: Knex) {
         .inTable(ETableNames.cities)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
+      table.string('email').notNullable();
+      table.integer('cnpj').notNullable();
+      table.integer('inscrState').notNullable();
+      table.integer('inscrCity').notNullable();
+      table.string('cnae').notNullable();
+      table.string('typeOfBusiness').notNullable();
+      table.string('contactName').notNullable();
+      table.integer('celular1').notNullable();
+      table.integer('celular2').notNullable();
+      table.integer('telephone').notNullable();
+      table.date('sinceDate').notNullable();
+      table.string('url').notNullable();
+      table.integer('salesManId').notNullable();
+      table.integer('status').notNullable();
 
       table.comment('Table to insert "clients"  in client ');
     })

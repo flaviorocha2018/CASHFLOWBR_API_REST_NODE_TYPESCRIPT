@@ -1,5 +1,5 @@
 export interface ICnae {
-  id: string;
+  id: number;
   code: string;
   description: string;
   
