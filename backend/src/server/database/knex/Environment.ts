@@ -11,7 +11,7 @@ export const development: Knex.Config = {
     // filename: path.resolve(__dirname, '..', '..', '..', '..', 'database.sqlite')
     user: 'postgres',
     password: '07021998',
-    database: 'NGCash',
+    database: 'Cashflow_Billing',
     host: 'localhost',
     port: 5432,
   },

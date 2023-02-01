@@ -1,4 +1,4 @@
-export interface ISalesMan {
+export interface ISalesman {
   id: number;
   firstName: string;
   middleName: string;

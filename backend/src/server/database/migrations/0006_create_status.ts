@@ -7,7 +7,7 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.status, table => {
       table.bigIncrements('id').primary().index();
-      table.string('type').checkLength('<=', 25).notNullable();
+      table.string('type').checkLength('<=', 35).notNullable();
 
       table.comment('Table used to store "status" in the status table.');
     })

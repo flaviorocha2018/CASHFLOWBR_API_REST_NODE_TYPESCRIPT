@@ -6,7 +6,7 @@ export async function up(knex: Knex) {
   return knex
     .schema
     .createTable(ETableNames.client, table => {
-      table.bigIncrements('id').primary().index();
+      table.bigIncrements('id').primary().index().unique();
       table.string('corporateName').index().notNullable();
       table.string('address').index().notNullable();
       table.string('complement').notNullable();

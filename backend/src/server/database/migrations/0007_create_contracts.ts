@@ -10,7 +10,7 @@ export async function up(knex: Knex) {
       table.date('dateSignature').notNullable();
       table
         .integer('clientId')
-        .index()
+        .index().unique()
         .notNullable()
         .references('id')
         .inTable(ETableNames.client)
@@ -20,9 +20,9 @@ export async function up(knex: Knex) {
       table.string('terms').notNullable();
       table.string('addictiveTerm');
       table.date('dateAddictiveTerm').notNullable();
-      table.integer('status').notNullable()
-        .references('status')
-        .inTable(ETableNames.client)
+      table.integer('status').notNullable().unique()
+        .references('id')
+        .inTable(ETableNames.status)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
       table.decimal('amount', 9,2).notNullable();

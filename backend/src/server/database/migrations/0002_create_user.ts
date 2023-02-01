@@ -11,16 +11,6 @@ export async function up(knex: Knex) {
       table.string('email').unique().index().notNullable(),
       table.string('password').unique().notNullable().checkLength('>=', 8);
   
-      table
-        .integer('accountId')
-        .unique()
-        .index()
-        .references('id')
-        .inTable(ETableNames.accounts)
-        .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
-      // user accountId is a FK for accounts
-
       table.comment('Table to insert "users"  in table user ');
     })
     .then(() => {
