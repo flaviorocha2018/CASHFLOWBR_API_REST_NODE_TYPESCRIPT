@@ -1,21 +1,19 @@
-# NG_CASH_KNEX_API_REST_NODE_TYPESCRIPT
+# CASHFLOWBR_API_REST_NODE_TYPESCRIPT
 
-# Repositório de uma API_REST_NODE_TYPESCRIPT
+# Repositório de uma API_REST_NODE_TYPESCRIPT para o Sistema de Fluxo de Caixa, para realizar o atendimento e faturamento aos clientes.
 
 Para realizar o projeto, estou utilizando Typescript, NodeJs, Postgresql e Knex (ORM) para a realização do Backend.
 No Frontend será utilizado Reactjs e Material-ui para estilização e atender a responsividade. Uma vez que o Material-ui possui seu design e desenvolvimento pela Google, o que indica ser uma boa opção para UI/UX e Android platform.
 
 # Objetivo
-1 - Ao criar um novo usuário, automaticamente  deve-se criar uma conta com balance de R$100,00 deste usuário;<br /> 
+1 - Criar controle de usuários, para acessar o sistema de atendimento e faturamento de clientes;<br /> 
 2 - Cada usuário deve possuir um nome único;<br />
 3 - Password seja composta de 8 caracteres, um número e uma letra maiúscula - deve ser hasheada ao salvar no banco;<br />
 4 - Todo usuário deve ser possível logar na aplicação utilizando username e password, e quando validado gere um token JWT de 24 horas;<br />
-5 - Todo usuário logado deve ser possível visualizar apenas a sua conta; e não ser possível visualizar outras contas;<br />
-6 - O usuário poderá fazer transferência para outros usuários/contas, desde que possua saldo para isso, e não podera fazer para si mesmo;<br />
-7 - As transações bem sucedidas deverão ser armazenadas na tabela "transactions". Em caso de falha a tabela não deve ser afetada;<br />
-8 - Ao usuário será permitido visualizar todas as transações que participou "Cash-in" ou "Cash-out";<br />
-9 - O usuário poderá filtrar as transações que participou - "Cash-in" ou "Cash-out" e data da realização.<br />
-
+5 - O sistema é dedicado para cadastrar clientes, contratos, e faturamento de clientes; <br/>
+6 - O sistema usará códigos "open source" para complementar a seção de boletagem (criação dos boletos);<br />
+7 - O sistema tem a finalidade de fazer a automação da cobrança (faturamento) e posteriormente dar baixa nas cobranças;<br />
+8 - O usuário terá acesso a totalidade do sistema para a administração do atendimento;<br />
 
   <strong>🚵 Requisitos a serem finalizados:</strong>
   Frontend: React e Typescript, utilizando Material-ui para estilização. Em andamento.
