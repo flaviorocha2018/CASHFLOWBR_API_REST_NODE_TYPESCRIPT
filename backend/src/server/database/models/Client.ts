@@ -13,10 +13,10 @@ export interface IClient {
   typeOfBusiness: string;
   contactName: string;
   celular1: number;
-  celular2: number;
-  telephone: number;
-  sinceDate: Date;
-  url: string;
-  salesManId: number;
+  celular2?: number;
+  telephone?: number;
+  sinceDate?: Date;
+  url?: string;
+  salesManId?: number;
   status: number;
 }

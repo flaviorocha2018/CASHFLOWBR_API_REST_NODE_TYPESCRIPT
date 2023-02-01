@@ -20,13 +20,8 @@ export const create = async (user: Omit<IUser, 'id'>): Promise<number | Error | 
     // const hashPassword = await bcrypt.hash(password, 10);
     // user.password = hashPassword;
    
-    
-    // Create an account and get accountId - default balance of 100.
-    const accountId  = await Knex(ETableNames.accounts).insert({}).returning('id');
-    user.accountId = accountId[0].id;
   
-
-    // Create an user with an accountId and default balance with value of 100.
+    // Create an user 
     const [result] = await Knex(ETableNames.user).insert({...user, password: hashPassword}).returning('id');
     
     // Create a token

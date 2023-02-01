@@ -15,10 +15,25 @@ interface IBodyProps extends Omit<IClient, 'id'> { }
 
 export const updateByIdValidation = validation(get => ({
   body: get<IBodyProps>(yup.object().shape({
-    email: yup.string().required().email(),
+    corporateName: yup.string().required().min(2),
+    address: yup.string().required(),
+    complement: yup.string().required(),
+    neighborhood: yup.string().required(),
     cityId: yup.number().integer().required(),
-    name: yup.string().required().min(3),
-    lastName: yup.string().required().min(3),
+    email: yup.string().required().email(),
+    cnpj: yup.number().integer().required(),
+    inscrState: yup.number().required(),
+    inscrCity: yup.number().required(),
+    cnae: yup.number().integer().required(),
+    typeOfBusiness: yup.string().required(),
+    contactName: yup.string().required(),
+    celular1: yup.number().required(),
+    celular2: yup.number().notRequired(),
+    telephone: yup.number().notRequired(),
+    sinceDate: yup.date().required(),
+    url: yup.string().notRequired(),
+    salesManId: yup.number().integer().notRequired(),
+    status: yup.number().integer().required(),
   })),
   params: get<IParamProps>(yup.object().shape({
     id: yup.number().integer().required().moreThan(0),

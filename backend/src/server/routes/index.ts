@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { AccountsController, CityController, ClientsController, UsersController } from './../controllers';
+import {  CityController, ClientsController, UsersController } from './../controllers';
 import { ensureAuthenticated } from '../shared/middleware';
-import { TransactionsController } from '../controllers/transactions';
+
 
 
 const router = Router();
@@ -23,15 +23,10 @@ router.get('/clients/:id', ensureAuthenticated, ClientsController.getByIdValidat
 router.put('/clients/:id', ensureAuthenticated, ClientsController.updateByIdValidation, ClientsController.updateById);
 router.delete('/clients/:id', ensureAuthenticated, ClientsController.deleteByIdValidation, ClientsController.deleteById);
 
-router.get('/account', ensureAuthenticated, AccountsController.getAllValidation, AccountsController.getAll);
-router.get('/account/:id', ensureAuthenticated, AccountsController.getByIdValidation, AccountsController.getBalanceById);
 
 router.post('/signin',  UsersController.signInValidation, UsersController.signIn);
 router.post('/signup',  UsersController.signUpValidation, UsersController.signUp);
 router.get('/user/:id',  UsersController.getAccountByIdValidation, UsersController.getUserAccountId);
-
-router.post('/transaction', TransactionsController.createValidation, TransactionsController.create);
-
 
 
 export { router };

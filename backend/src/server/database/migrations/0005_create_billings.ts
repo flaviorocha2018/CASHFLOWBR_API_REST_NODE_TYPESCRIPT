@@ -28,7 +28,7 @@ export async function up(knex: Knex) {
 export async function down(knex: Knex) {
   return knex
     .schema
-    .dropTable(ETableNames.client)
+    .dropTable(ETableNames.billings)
     .then(() => {
       console.log(`# Dropped Table ${ETableNames.billings}`);
     });
