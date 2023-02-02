@@ -34,7 +34,6 @@ export const create = async (user: Omit<IUser, 'id'>): Promise<number | Error | 
         id: result.id, 
         username: user.userName,
         email: user.email, 
-        accountId:  user.accountId
       }
     };
     

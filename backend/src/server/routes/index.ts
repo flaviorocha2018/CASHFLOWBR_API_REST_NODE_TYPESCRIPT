@@ -11,10 +11,10 @@ router.get('/', (_, res) => {
   return res.send('Olá, DEV!');
 });
 
-router.get('/city', ensureAuthenticated, CityController.getAllValidation, CityController.getAll);
-router.post('/city', ensureAuthenticated, CityController.createValidation, CityController.create);
-router.get('/city/:id', ensureAuthenticated, CityController.getByIdValidation, CityController.getById);
-router.put('/city/:id', ensureAuthenticated, CityController.updateByIdValidation, CityController.updateById);
+router.get('/city', CityController.getAllValidation, CityController.getAll);
+router.post('/city',  CityController.createValidation, CityController.create);
+router.get('/city/:id', CityController.getByIdValidation, CityController.getById);
+router.put('/city/:id', CityController.updateByIdValidation, CityController.updateById);
 router.delete('/city/:id', ensureAuthenticated, CityController.deleteByIdValidation, CityController.deleteById);
 
 router.get('/clients', ensureAuthenticated, ClientsController.getAllValidation, ClientsController.getAll);
