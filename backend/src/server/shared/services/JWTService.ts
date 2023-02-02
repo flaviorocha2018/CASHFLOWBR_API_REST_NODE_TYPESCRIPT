@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 
 interface IJwtData {
   uid: number;
+
 }
 
 const signIn = (data: IJwtData): string | 'JWT_SECRET_NOT_FOUND' => {

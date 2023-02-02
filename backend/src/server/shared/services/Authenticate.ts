@@ -8,7 +8,7 @@ import { createToken } from '../../shared/middleware/auth';
 export const authenticateUser = async (userName: string, password: string): Promise<IUser | Error | Object> => {
 
   const result = await Knex(ETableNames.user)
-    .select('userName', 'password', 'id', 'email', 'accountId')
+    .select('userName', 'password', 'id', 'email')
     .from(ETableNames.user)
     .where('userName', '=', userName)
     .first();
@@ -30,7 +30,6 @@ export const authenticateUser = async (userName: string, password: string): Prom
       id: result.id, 
       username:  result.userName,
       email: result.email, 
-      accountId:  result.accountId
     }
   };
 };
