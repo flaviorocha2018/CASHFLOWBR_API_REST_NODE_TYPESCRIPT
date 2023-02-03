@@ -3,10 +3,11 @@ import * as jwt from 'jsonwebtoken';
 
 interface IJwtData {
   uid: number;
-
+  
 }
 
 const signIn = (data: IJwtData): string | 'JWT_SECRET_NOT_FOUND' => {
+  console.log('userid signIN', data);
   if (!process.env.JWT_SECRET) return 'JWT_SECRET_NOT_FOUND';
 
 
@@ -22,6 +23,7 @@ const verify = (token: string): IJwtData | 'JWT_SECRET_NOT_FOUND' | 'INVALID_TOK
     if (typeof decoded === 'string'){
       return 'INVALID_TOKEN';
     }
+    console.log('IJwData verify:', decoded );
     return decoded as IJwtData;
   } catch (error) {
     return 'INVALID_TOKEN';

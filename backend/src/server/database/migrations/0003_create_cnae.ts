@@ -8,7 +8,7 @@ export async function up(knex: Knex) {
     .createTable(ETableNames.cnae, table => {
       table.bigIncrements('id').primary().index();
       table.string('code').notNullable();
-      table.string('description').checkLength('<=', 150).index().notNullable();
+      table.string('description').notNullable();
 
       table.comment('Table used to store cities in this system.');
     })

@@ -8,8 +8,8 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.cities, table => {
       table.bigIncrements('id').primary().index();
-      table.string('name', 150).checkLength('<=', 150).index().notNullable();
-      table.string('state', 2).checkLength('=', 2).index().notNullable();
+      table.string('name', 150).index().notNullable();
+      table.string('state', 2).index().notNullable();
 
       table.comment('Table used to store cities in this system.');
     })
