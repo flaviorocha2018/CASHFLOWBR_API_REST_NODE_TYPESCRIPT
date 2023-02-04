@@ -34,6 +34,7 @@ export const updateByIdValidation = validation(get => ({
     url: yup.string().notRequired(),
     salesManId: yup.number().integer().notRequired(),
     status: yup.number().integer().required(),
+    contractNumber: yup.number().notRequired(),
   })),
   params: get<IParamProps>(yup.object().shape({
     id: yup.number().integer().required().moreThan(0),

@@ -20,19 +20,20 @@ export async function up(knex: Knex) {
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
       table.string('email').notNullable();
-      table.integer('cnpj').notNullable();
-      table.integer('inscrState').notNullable();
-      table.integer('inscrCity').notNullable();
+      table.bigInteger('cnpj').notNullable();
+      table.bigInteger('inscrState').notNullable();
+      table.bigInteger('inscrCity').notNullable();
       table.string('cnae').notNullable();
       table.string('typeOfBusiness').notNullable();
       table.string('contactName').notNullable();
-      table.integer('celular1').notNullable();
-      table.integer('celular2').notNullable();
-      table.integer('telephone').notNullable();
+      table.bigInteger('celular1').notNullable();
+      table.bigInteger('celular2').notNullable();
+      table.bigInteger('telephone').notNullable();
       table.date('sinceDate').notNullable();
       table.string('url').notNullable();
-      table.integer('salesManId').notNullable();
-      table.integer('status').notNullable();
+      table.bigInteger('salesManId').notNullable();
+      table.bigInteger('status').notNullable();
+      table.bigInteger('contractNumber');
 
       table.comment('Table to insert "clients"  in client ');
     })

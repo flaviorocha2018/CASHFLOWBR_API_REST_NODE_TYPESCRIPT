@@ -30,6 +30,7 @@ export const createValidation = validation(get => ({
     url: yup.string().notRequired(),
     salesManId: yup.number().integer().notRequired(),
     status: yup.number().integer().required(),
+    contractNumber: yup.number().notRequired(),
   })),
 }));
 

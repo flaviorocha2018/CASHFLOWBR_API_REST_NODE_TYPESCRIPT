@@ -19,4 +19,5 @@ export interface IClient {
   url?: string;
   salesManId?: number;
   status: number;
+  contractNumber?: number;
 }

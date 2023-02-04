@@ -27,7 +27,7 @@ export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res:
   if (!req.params.id) {
     return res.status(StatusCodes.BAD_REQUEST).json({
       errors: {
-        default: 'The parameter "id" must be informed.'
+        default: 'O parâmetro "id" precisa ser informado.'
       }
     });
   }

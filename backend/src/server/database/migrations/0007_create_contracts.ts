@@ -9,7 +9,7 @@ export async function up(knex: Knex) {
       table.bigIncrements('id').primary().index();
       table.date('dateSignature').notNullable();
       table
-        .integer('clientId')
+        .bigInteger('clientId')
         .index().unique()
         .notNullable()
         .references('id')
@@ -20,7 +20,7 @@ export async function up(knex: Knex) {
       table.string('terms').notNullable();
       table.string('addictiveTerm');
       table.date('dateAddictiveTerm').notNullable();
-      table.integer('status').notNullable().unique()
+      table.bigInteger('status').notNullable().unique()
         .references('id')
         .inTable(ETableNames.status)
         .onUpdate('CASCADE')
