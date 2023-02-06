@@ -2,7 +2,7 @@ export interface IAttendance {
   id: number;
   clientId: number;
   dateReference: Date;
-  issue: number;
+  issue: string;
   userId: number;
   followUp: Date;
   status: number;

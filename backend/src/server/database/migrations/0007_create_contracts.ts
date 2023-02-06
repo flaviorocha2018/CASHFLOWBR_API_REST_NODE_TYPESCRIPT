@@ -8,21 +8,14 @@ export async function up(knex: Knex) {
     .createTable(ETableNames.contracts, table => {
       table.bigIncrements('id').primary().index();
       table.date('dateSignature').notNullable();
-      table
-        .bigInteger('clientId')
-        .index().unique()
-        .notNullable()
-        .references('id')
-        .inTable(ETableNames.client)
+      table.bigInteger('clientId').references('id').inTable(ETableNames.client)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
       table.string('url').notNullable();
       table.string('terms').notNullable();
       table.string('addictiveTerm');
       table.date('dateAddictiveTerm').notNullable();
-      table.bigInteger('status').notNullable().unique()
-        .references('id')
-        .inTable(ETableNames.status)
+      table.bigInteger('status').references('id').inTable(ETableNames.status)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
       table.decimal('amount', 9,2).notNullable();

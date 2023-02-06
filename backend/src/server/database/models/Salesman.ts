@@ -1,10 +1,10 @@
 export interface ISalesman {
   id: number;
   name: string;
-  identificationNumber: number;
+  identificationNumber: string;
   dateIssued: Date;
   stateDepartment: string;
-  CPF: number;
+  CPF: string;
   email: string;
   address: string;
   neighborhood: string;

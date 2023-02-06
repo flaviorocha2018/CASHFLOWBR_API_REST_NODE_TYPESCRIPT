@@ -8,10 +8,10 @@ export async function up(knex: Knex) {
     .createTable(ETableNames.salesman, table => {
       table.bigIncrements('id').primary().index();
       table.string('name').index().notNullable();
-      table.bigInteger('identificationNumber').notNullable();
+      table.string('identificationNumber').notNullable();
       table.date('dateIssued').notNullable();
       table.string('stateDepartment').notNullable();
-      table.bigInteger('CPF').notNullable();
+      table.string('CPF').notNullable();
       table.string('email').notNullable();
       table.string('address').index().notNullable();
       table.string('complement').notNullable();

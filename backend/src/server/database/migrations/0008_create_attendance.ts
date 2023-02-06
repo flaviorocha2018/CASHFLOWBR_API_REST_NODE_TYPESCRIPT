@@ -7,15 +7,18 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.attendance, table => {
       table.bigIncrements('id').primary().index();
-      table.bigInteger('clientId').index().notNullable().references('id')
-        .inTable(ETableNames.client).onUpdate('CASCADE').onDelete('RESTRICT');
+      table.bigInteger('clientId').references('id').inTable(ETableNames.client)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
       table.date('dateReference').notNullable();
       table.string('issue').notNullable();
-      table.bigInteger('userId').notNullable().references('id')
-        .inTable(ETableNames.user).onUpdate('CASCADE').onDelete('RESTRICT');
+      table.bigInteger('userId').references('id').inTable(ETableNames.user)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
       table.date('followUp').notNullable();
-      table.bigInteger('status').notNullable().references('id')
-        .inTable(ETableNames.status).onUpdate('CASCADE').onDelete('RESTRICT');
+      table.bigInteger('status').references('id').inTable(ETableNames.status)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
 
       table.comment('Table to insert "attendance" in attendance table ');
     })

@@ -11,19 +11,14 @@ export async function up(knex: Knex) {
       table.string('address').index().notNullable();
       table.string('complement').notNullable();
       table.string('neighborhood').notNullable();
-      table
-        .bigInteger('cityId')
-        .index()
-        .notNullable()
-        .references('id')
-        .inTable(ETableNames.cities)
+      table.bigInteger('cityId').references('id').inTable(ETableNames.client)
         .onUpdate('CASCADE')
         .onDelete('RESTRICT');
       table.string('email').notNullable();
-      table.bigInteger('cnpj').notNullable();
-      table.bigInteger('inscrState').notNullable();
-      table.bigInteger('inscrCity').notNullable();
-      table.string('cnae').notNullable();
+      table.string('cnpj').notNullable();
+      table.string('inscrState').notNullable();
+      table.string('inscrCity').notNullable();
+      table.bigInteger('cnaeId').notNullable();
       table.string('typeOfBusiness').notNullable();
       table.string('contactName').notNullable();
       table.bigInteger('celular1').notNullable();
@@ -32,7 +27,9 @@ export async function up(knex: Knex) {
       table.date('sinceDate').notNullable();
       table.string('url').notNullable();
       table.bigInteger('salesManId').notNullable();
-      table.bigInteger('status').notNullable();
+      table.bigInteger('statusId').references('id').inTable(ETableNames.status)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
       table.bigInteger('contractNumber');
 
       table.comment('Table to insert "clients"  in client ');

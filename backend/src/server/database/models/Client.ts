@@ -6,10 +6,10 @@ export interface IClient {
   neighborhood: string;
   cityId: number;
   email: string;
-  cnpj: number;
-  inscrState: number;
-  inscrCity: number;
-  cnae: number;
+  cnpj: string;
+  inscrState: string;
+  inscrCity: string;
+  cnaeId: number;
   typeOfBusiness: string;
   contactName: string;
   celular1: number;

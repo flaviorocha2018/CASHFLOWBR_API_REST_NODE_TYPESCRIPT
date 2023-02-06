@@ -7,8 +7,9 @@ export async function up(knex: Knex) {
     .schema
     .createTable(ETableNames.billings, table => {
       table.bigIncrements('id').primary().index();
-      table.bigInteger('clientId').index().notNullable().references('id')
-        .inTable(ETableNames.client).onUpdate('CASCADE').onDelete('RESTRICT');
+      table.bigInteger('clientId').references('id').inTable(ETableNames.client)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
       table.date('dateReference').notNullable();
       table.decimal('amount', 9,2 ).notNullable();
       table.bigInteger('invoiceNumber').notNullable();
@@ -16,7 +17,9 @@ export async function up(knex: Knex) {
       table.date('dueDate').notNullable();
       table.decimal('amountPaid', 9,2).notNullable();
       table.date('paymentDate').notNullable();
-      table.bigInteger('status').notNullable();
+      table.bigInteger('status').references('id').inTable(ETableNames.status)
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
 
       table.comment('Table to insert "bills" in billing table ');
     })
