@@ -10,9 +10,9 @@ export const count = async (filter = ''): Promise<number | Error> => {
 
     if (Number.isInteger(Number(count))) return Number(count);
 
-    return new Error('Error consulting the total registers');
+    return new Error('Erro ao consultar a quantidade total de registros');
   } catch (error) {
     console.log(error);
-    return new Error('Error consulting the total registers');
+    return new Error('Erro ao consultar a quantidade total de registros');
   }
 };

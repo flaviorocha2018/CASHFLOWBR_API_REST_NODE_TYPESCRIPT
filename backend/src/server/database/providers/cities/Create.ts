@@ -3,9 +3,9 @@ import { ICity } from '../../models';
 import { Knex } from '../../knex';
 
 
-export const create = async (city: Omit<ICity, 'id'>): Promise<number | Error> => {
+export const create = async (cidade: Omit<ICity, 'id'>): Promise<number | Error> => {
   try {
-    const [result] = await Knex(ETableNames.cities).insert(city).returning('id');
+    const [result] = await Knex(ETableNames.cities).insert(cidade).returning('id');
 
     if (typeof result === 'object') {
       return result.id;
@@ -13,9 +13,9 @@ export const create = async (city: Omit<ICity, 'id'>): Promise<number | Error> =
       return result;
     }
 
-    return new Error('Error inserting a new register');
+    return new Error('Erro ao cadastrar o registro');
   } catch (error) {
     console.log(error);
-    return new Error('Error trying to insert a new register');
+    return new Error('Erro ao inserir um novo registro');
   }
 };

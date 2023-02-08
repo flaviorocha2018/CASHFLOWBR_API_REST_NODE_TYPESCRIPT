@@ -18,6 +18,6 @@ export interface IClient {
   sinceDate?: Date;
   url?: string;
   salesManId?: number;
-  status: number;
+  statusId: number;
   contractNumber?: number;
 }

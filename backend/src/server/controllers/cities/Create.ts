@@ -17,6 +17,7 @@ export const createValidation = validation((getSchema) => ({
 }));
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
+  console.log('reqBody: ', req.body);
   const result = await CityProvider.create(req.body);
 
   if (result instanceof Error) {
@@ -29,4 +30,3 @@ export const create = async (req: Request<{}, {}, ICity>, res: Response) => {
 
   return res.status(StatusCodes.CREATED).json(result);
 };
-
