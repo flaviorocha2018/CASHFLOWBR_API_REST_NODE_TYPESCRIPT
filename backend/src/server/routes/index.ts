@@ -26,7 +26,7 @@ router.delete('/clients/:id', ensureAuthenticated, ClientsController.deleteByIdV
 
 router.post('/signin',  UsersController.signInValidation, UsersController.signIn);
 router.post('/signup',  UsersController.signUpValidation, UsersController.signUp);
-router.get('/user/:id',  UsersController.getAccountByIdValidation, UsersController.getUserAccountId);
+
 
 
 export { router };

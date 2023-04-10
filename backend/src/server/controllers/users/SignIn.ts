@@ -10,7 +10,7 @@ import { JWTService } from '../../shared/services';
 import { createToken } from '../../shared/middleware/auth';
 
 
-interface IBodyProps extends Omit<IUser, 'id' | 'email' | 'accountId'> { }
+interface IBodyProps extends Omit<IUser, 'id' | 'email'> { }
 
 export const signInValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
@@ -42,19 +42,18 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
       }
     });
   } else {
-
     // const token = createToken(userId);
     const accessToken = JWTService.signIn({uid: userId});
     if (accessToken === 'JWT_SECRET_NOT_FOUND'){
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         errors: {
-          default: 'Error in generate access token!'
+          default: 'Erro ao gerar o access token!'
         }
       });
     }
    
 
-    return res.status(StatusCodes.OK).json({accessToken});
+    return res.status(StatusCodes.OK).json({ accessToken });
   }
 
   // return res.status(StatusCodes.CREATED).json(result);

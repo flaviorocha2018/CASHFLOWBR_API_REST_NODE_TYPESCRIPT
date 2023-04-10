@@ -10,7 +10,6 @@ const signIn = (data: IJwtData): string | 'JWT_SECRET_NOT_FOUND' => {
   console.log('userid signIN', data);
   if (!process.env.JWT_SECRET) return 'JWT_SECRET_NOT_FOUND';
 
-
   return jwt.sign(data, process.env.JWT_SECRET, {expiresIn: '24h'});
 };
 
