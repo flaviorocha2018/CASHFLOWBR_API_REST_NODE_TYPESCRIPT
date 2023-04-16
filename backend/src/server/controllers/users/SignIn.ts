@@ -25,6 +25,7 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
   const {userName, password} = req.body;
   const userId = await UsersProvider.getIdByUserName(req.body.userName);
   // Making comparison of password and hashedPassword from DB
+  console.log('Form signin: ', userName);
   const result = await authenticateUser(userName, password);
 
   if (result instanceof Error) {
