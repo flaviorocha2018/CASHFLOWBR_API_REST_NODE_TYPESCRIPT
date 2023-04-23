@@ -3,9 +3,10 @@ import * as getByUserName from './GetByUserName';
 import * as create from './Create';
 import * as getById from './GetById';
 import * as getIdByUserName from './GetIdByUserName';
-import * as getUserAccountId from './GetUserAccountId';
 import * as authenticateUser from '../../../shared/services';
 import * as ValidateUser from '../../../shared/services';
+import * as getAll from './GetAll';
+import * as count from './Count';
 
 
 
@@ -15,8 +16,9 @@ export const UsersProvider = {
   ...create,
   ...getById,
   ...getIdByUserName,
-  ...getUserAccountId,
   ...authenticateUser,
   ...ValidateUser,
+  ...getAll,
+  ...count,
 
 };

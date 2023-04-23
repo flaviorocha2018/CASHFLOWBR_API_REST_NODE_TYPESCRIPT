@@ -1,9 +1,10 @@
 import { ETableNames } from '../../ETableNames';
 
 import { Knex } from '../../knex';
+import { IUser } from '../../models';
 
 
-export const getIdByUserName = async (userName: string): Promise< any > => {
+export const getIdByUserName = async (userName: string): Promise< IUser | any > => {
   try {
     const result = await Knex(ETableNames.user)
       .select('id')

@@ -15,7 +15,7 @@ interface IBodyProps extends Omit<IUser, 'id' | 'email'> { }
 export const signInValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(yup.object().shape({
     userName: yup.string().required().min(3).max(100),
-    password: yup.string().required().min(8).matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/, {message: 'Password must contain at least one capital letter and one number'}),
+    password: yup.string().required().min(8).matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/, {message: 'Password must contain at least one capital letter, a letter and one number'}),
     
   })),
 }));
@@ -43,8 +43,10 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
       }
     });
   } else {
-    // const token = createToken(userId);
-    const accessToken = JWTService.signIn({uid: userId});
+    const token = createToken(userId);
+    console.log('token:', token);
+    const accessToken = token;
+    // const accessToken = JWTService.signIn({uid: userId});
     if (accessToken === 'JWT_SECRET_NOT_FOUND'){
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         errors: {

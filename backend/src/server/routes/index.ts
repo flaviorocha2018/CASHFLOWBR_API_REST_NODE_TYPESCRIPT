@@ -23,6 +23,9 @@ router.get('/clients/:id', ensureAuthenticated, ClientsController.getByIdValidat
 router.put('/clients/:id', ensureAuthenticated, ClientsController.updateByIdValidation, ClientsController.updateById);
 router.delete('/clients/:id', ensureAuthenticated, ClientsController.deleteByIdValidation, ClientsController.deleteById);
 
+// tirei o ensureAuthenticated para verificar  o acesso do getAll.  está OK.
+router.get('/users', UsersController.getAllValidation, UsersController.getAll);
+// router.get('/users/:id', ensureAuthenticated, UsersController.getByIdValidation, UsersController.getIdByUserName);
 
 router.post('/signin',  UsersController.signInValidation, UsersController.signIn);
 router.post('/signup',  UsersController.signUpValidation, UsersController.signUp);
