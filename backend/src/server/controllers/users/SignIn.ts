@@ -6,7 +6,6 @@ import { UsersProvider } from '../../database/providers/users';
 import { validation } from '../../shared/middleware';
 import { IUser } from '../../database/models';
 import { authenticateUser }  from '../../shared/services/Authenticate';
-import { JWTService } from '../../shared/services';
 import { createToken } from '../../shared/middleware/auth';
 
 
@@ -25,6 +24,7 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
   const {userName, password} = req.body;
   const userId = await UsersProvider.getIdByUserName(req.body.userName);
   // Making comparison of password and hashedPassword from DB
+  console.log('req.body', req.body);
   console.log('Form signin: ', userName);
   const result = await authenticateUser(userName, password);
 
