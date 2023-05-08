@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "cadastrar",
         "celular",
         "Cidade",
         "Cidades",
@@ -10,9 +11,11 @@
         "estado",
         "gerar",
         "inscr",
+        "inserir",
         "knexfile",
         "Petrópolis",
         "postgrespw",
+        "registro",
         "signin",
         "teste",
         "Usuario"

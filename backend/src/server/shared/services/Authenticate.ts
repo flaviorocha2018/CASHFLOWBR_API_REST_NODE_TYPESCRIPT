@@ -13,10 +13,6 @@ export const authenticateUser = async (userName: string, password: string): Prom
     .where('userName', '=', userName)
     .first();
 
-  console.log('Authenticate Form name: ', userName);
-  console.log('password', result?.password);
-  console.log('result', result);
-
   if(!result) throw new Error('Invalid user or password');
 
   const isMatch = await bcrypt.compare(password as string, result.password);

@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { JWTService } from '../services';
+import { verifyToken } from './auth';
 
 
 export const ensureAuthenticated: RequestHandler = async (req, res, next) => {
@@ -21,18 +22,11 @@ export const ensureAuthenticated: RequestHandler = async (req, res, next) => {
     });
   }
 
-  const jwtData = JWTService.verify(token);
-  console.log('ensureAuthent.jwData:', jwtData);
-  if (jwtData === 'JWT_SECRET_NOT_FOUND') {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: { default: 'Erro ao verificar o token' }
-    });
-  } else if (jwtData === 'INVALID_TOKEN') {
-    return res.status(StatusCodes.UNAUTHORIZED).json({
-      errors: { default: 'Não autenticado' }
-    });
-  }
-  console.log(req.headers);
+  const jwtData = verifyToken(token);
+  // console.log('ensureAuthent.jwData:', jwtData);
+  // console.log(req.headers);
+
+  console.log('req.body EnsureAuth', req.body);
   req.headers.idUsuario = String(jwtData.uid);
 
   return next();

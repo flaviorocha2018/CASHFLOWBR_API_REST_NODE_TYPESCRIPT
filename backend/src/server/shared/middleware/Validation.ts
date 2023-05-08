@@ -24,6 +24,7 @@ export const validation: TValidation = (getAllSchemas) => async (req, res, next)
   // Object.entries schemas transformed in array
   Object.entries(schemas).forEach(([key, schema]) => {
     try {
+
       schema.validateSync(req[key as TProperty], { abortEarly: false });
     } catch (err) {
       const yupError = err as ValidationError;

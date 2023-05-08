@@ -11,12 +11,14 @@ router.get('/', (_, res) => {
   return res.send('Olá, DEV!');
 });
 
+// tirei o ensureAuthenticated para verificar o post e getAll.
 router.get('/city', ensureAuthenticated, CityController.getAllValidation, CityController.getAll);
 router.post('/city', ensureAuthenticated, CityController.createValidation, CityController.create);
 router.get('/city/:id', ensureAuthenticated, CityController.getByIdValidation, CityController.getById);
 router.put('/city/:id', ensureAuthenticated, CityController.updateByIdValidation, CityController.updateById);
 router.delete('/city/:id', ensureAuthenticated, CityController.deleteByIdValidation, CityController.deleteById);
 
+// tirei o ensureAuthenticated para verificar o post e getAll.
 router.get('/clients', ensureAuthenticated, ClientsController.getAllValidation, ClientsController.getAll);
 router.post('/clients', ensureAuthenticated, ClientsController.createValidation, ClientsController.create);
 router.get('/clients/:id', ensureAuthenticated, ClientsController.getByIdValidation, ClientsController.getById);

@@ -1,18 +1,19 @@
 import 'dotenv/config';
-import { sign, verify, SignOptions, JwtPayload } from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
+// import { sign, verify, SignOptions, JwtPayload } from 'jsonwebtoken';
 
-const JWT_OPTIONS: SignOptions = { expiresIn: '1d', algorithm: 'HS256' };
+const JWT_OPTIONS: jwt.SignOptions = { expiresIn: 86400 };
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-interface IPayload extends JwtPayload {
+interface IPayload extends jwt.JwtPayload {
   username: string;
   id: number;
 }
 
 export const createToken = (payload: IPayload ): string => {
-  return sign(payload, JWT_SECRET, JWT_OPTIONS);
+  return jwt.sign(payload, JWT_SECRET);
 };
 export const verifyToken = (token: string): IPayload => {
-  return verify(token, JWT_SECRET) as IPayload;
+  return jwt.verify(token, JWT_SECRET) as IPayload;
 };
